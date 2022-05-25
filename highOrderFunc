@@ -1,0 +1,59 @@
+
+    //MAP
+function map(arr,mapFunc){          // map takes an array & function as arguement
+   const mapArr = [];               // empty array
+   for(let i = 0;i < arr.length;i++){          // loop through array
+         const result = mapFunc(arr[i],i,arr);
+         mapArr.push(result);
+   }
+   return mapArr;
+}
+
+let arr =[1,2,3];
+const sqArr = map(arr,num=> num**2);
+console.log(sqArr);
+
+
+     //FILTER
+function filter(arr,filterFunc){       // filter takes an array & function as arguement
+   const filterArr = [];                // empty array
+   for(let i =0;i < arr.length;i++){           //// loop through array
+      const result = filterFunc(arr[i],i,arr);
+        if(result){                    //push current element if result is true
+           filterArr.push(arr[i]);
+        }
+      }
+        return filterArr;
+   }
+
+let arr2 = [1,2,3,4,5];
+const oddArr2 = filter(arr2,num => num%2==0);
+console.log(oddArr2);
+
+
+       //REDUCE
+function reduce(arr,reducer,initialValue){     // reduce take array,reduecer() and initialValue as arguement
+     let accumulator = initialValue === undefined ? 0: initialValue;
+     for(let i =0;i < arr.length;i++) {      //loop through array
+     accumulator = reducer(accumulator,arr[i],i,arr);
+     }
+     return accumulator;
+}
+
+let arr3 = [1,2,3,4];
+const sumReducer=(accumulator,currentValue) => accumulator+currentValue; 
+const sum = reduce(arr3,sumReducer);
+console.log(sum);
+
+
+       //FOREACH
+Array.prototype.myEach = function(callback){
+   for(let i =0; i < this.length;i++){
+      callback(this[i] , i ,this);
+   }
+}
+
+let arr4 = ['mahima' , 'diya' , 'naman'];
+arr4.myEach(function(word){
+   console.log(word);
+})
